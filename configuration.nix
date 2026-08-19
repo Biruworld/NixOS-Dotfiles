@@ -155,6 +155,7 @@ in
    pkgs.vscode
    pkgs.playerctl
    kdePackages.polkit-kde-agent-1
+   pkgs.anki-bin
   ];
 	
 	systemd.user.services.polkit-kde-authentication-agent-1 = {
@@ -175,6 +176,15 @@ in
   jetbrains-mono
   nerd-fonts.jetbrains-mono # If you need the Nerd Font icons
   ];
+
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-mozc
+      fcitx5-gtk
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
