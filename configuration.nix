@@ -156,6 +156,7 @@ in
    pkgs.playerctl
    kdePackages.polkit-kde-agent-1
    pkgs.anki-bin
+   pkgs.lm_sensors
   ];
 	
 	systemd.user.services.polkit-kde-authentication-agent-1 = {
