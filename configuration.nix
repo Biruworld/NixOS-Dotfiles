@@ -24,7 +24,7 @@ in
 
 config = {
   #TLP Config
-    powerManagement.powertop.enable = true; # enable powertop auto tuning on startup.
+    powerManagement.powertop.enable = false; # enable powertop auto tuning on startup.
     services.system76-scheduler.settings.cfsProfiles.enable = true; # Better scheduling for CPU cycles - thanks System76!!!
     services.thermald.enable = true; # Enable thermald, the temperature management daemon. (only necessary if on Intel CPUs)
     services.power-profiles-daemon.enable = false; # Disable GNOMEs power management
@@ -44,10 +44,11 @@ config = {
         START_CHARGE_THRESH_BAT0 = 75;
         STOP_CHARGE_THRESH_BAT0 = 81;
 
-        # mouse active
-        USB_DENYLIST = "30fa:0400";
-      };
+        
+        };
     };
+      
+
 
   # sddm-astronaut-theme
   services.displayManager.sddm = {
@@ -145,7 +146,6 @@ config = {
       kitty
       waybar
       rofi
-      dunst
       grim
       brightnessctl
       slurp
@@ -178,7 +178,6 @@ config = {
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
    sddm-astronaut
-   inputs.helium.packages.${pkgs.system}.default
    pkgs.strawberry
    pkgs.obsidian
    pkgs.bluetuith
