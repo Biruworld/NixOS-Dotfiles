@@ -2,17 +2,54 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, vars, ... }:
   # this is for sddm themes
   let
   sddm-astronaut = pkgs.sddm-astronaut.override {
     embeddedTheme = "pixel_sakura";  # or any other theme
+
   themeConfig = {
       Font = "JetBrains Mono";
     };
 };
+
+# TLP, Power Configure
+cfg = config.custom;
 in
-{ 
+{
+  imports = [
+# include the results of the hardware scan.
+  ./hardware-configuration.nix
+  ];
+
+config = {
+  #TLP Config
+    powerManagement.powertop.enable = true; # enable powertop auto tuning on startup.
+    services.system76-scheduler.settings.cfsProfiles.enable = true; # Better scheduling for CPU cycles - thanks System76!!!
+    services.thermald.enable = true; # Enable thermald, the temperature management daemon. (only necessary if on Intel CPUs)
+    services.power-profiles-daemon.enable = false; # Disable GNOMEs power management
+    services.tlp = {
+      enable = true; # Enable TLP (better than gnomes internal power manager)
+      settings = {
+        CPU_BOOST_ON_AC = 1;
+        CPU_BOOST_ON_BAT = 1;
+        CPU_HWP_DYN_BOOST_ON_AC = 1;
+        CPU_HWP_DYN_BOOST_ON_BAT = 1;
+        CPU_SCALING_GOVERNOR_ON_AC = "balanced";
+        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+        CPU_ENERGY_PERF_POLICY_ON_AC = "balanced";
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
+        PLATFORM_PROFILE_ON_AC = "balanced";
+        PLATFORM_PROFILE_ON_BAT = "balanced";
+        START_CHARGE_THRESH_BAT0 = 75;
+        STOP_CHARGE_THRESH_BAT0 = 81;
+
+        # mouse active
+        USB_DENYLIST = "30fa:0400";
+      };
+    };
+
+  # sddm-astronaut-theme
   services.displayManager.sddm = {
     enable = true;
     theme = "sddm-astronaut-theme";
@@ -21,10 +58,6 @@ in
       kdePackages.qtmultimedia # Required for video backgrounds/audio
     ];
   };
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -236,5 +269,5 @@ in
     nvidiaBusId = "PCI:1@0:0:0";
     # amdgpuBusId = "PCI:5@0:0:0"; # If you have an AMD iGPU
   };
-
+};
 }
