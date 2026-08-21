@@ -75,7 +75,7 @@ config = {
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  #networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Makassar";
@@ -150,11 +150,15 @@ config = {
       brightnessctl
       slurp
       wl-clipboard
+      impala
     ];
   };
 
 # Hyprland Utilities LMAOO XDDD
   programs.hyprland.enable = true;
+
+# iwd for Impala WIFI TUI
+networking.wireless.iwd.enable = true;
 
 # fish shell
   programs.fish.enable = true;
@@ -232,6 +236,14 @@ config = {
     ];
   }
 ];
+
+  # NixOS home.nix
+  home-manager = {
+  useGlobalPkgs = true;
+  useUserPackages = true;
+
+  users.asterlusnce = import ./home-manager/home.nix;
+};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
