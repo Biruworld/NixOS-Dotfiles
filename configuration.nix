@@ -32,19 +32,19 @@ config = {
       enable = true; # Enable TLP (better than gnomes internal power manager)
       settings = {
         CPU_BOOST_ON_AC = 1;
-        CPU_BOOST_ON_BAT = 1;
+        CPU_BOOST_ON_BAT = 0;
         CPU_HWP_DYN_BOOST_ON_AC = 1;
-        CPU_HWP_DYN_BOOST_ON_BAT = 1;
+        CPU_HWP_DYN_BOOST_ON_BAT = 0;
         CPU_SCALING_GOVERNOR_ON_AC = "balanced";
         CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-        CPU_ENERGY_PERF_POLICY_ON_AC = "balanced";
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
+        CPU_ENERGY_PERF_POLICY_ON_AC = "balance_power";
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "powersave";
         PLATFORM_PROFILE_ON_AC = "balanced";
-        PLATFORM_PROFILE_ON_BAT = "balanced";
+        PLATFORM_PROFILE_ON_BAT = "powersave";
+        CPU_MAX_PERF_ON_BAT = 30;
+        CPU_MAX_PERF_ON_AC = 100;
         START_CHARGE_THRESH_BAT0 = 75;
-        STOP_CHARGE_THRESH_BAT0 = 81;
-
-        
+        STOP_CHARGE_THRESH_BAT0 = 81; 
         };
     };
       
@@ -189,6 +189,7 @@ config = {
    kdePackages.polkit-kde-agent-1
    pkgs.anki-bin
    pkgs.lm_sensors
+   pkgs.gum
   ];
 	
 	systemd.user.services.polkit-kde-authentication-agent-1 = {
@@ -218,6 +219,19 @@ config = {
       fcitx5-gtk
     ];
   };
+
+  # No password for this certain applications.
+  security.sudo.extraRules = [
+  {
+    users = [ "asterlusnce" ];
+    commands = [
+      {
+        command = "/home/asterlusnce/.local/bin/powerctl";
+        options = [ "NOPASSWD" ];
+      }
+    ];
+  }
+];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
