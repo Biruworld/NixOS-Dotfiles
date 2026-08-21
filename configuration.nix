@@ -194,6 +194,8 @@ networking.wireless.iwd.enable = true;
    pkgs.anki-bin
    pkgs.lm_sensors
    pkgs.gum
+   pkgs.floorp-bin
+   pkgs.wiremix
   ];
 	
 	systemd.user.services.polkit-kde-authentication-agent-1 = {
