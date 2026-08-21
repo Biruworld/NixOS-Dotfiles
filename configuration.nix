@@ -64,8 +64,9 @@ config = {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #Use Stable or Use latest kernel.
+  boot.kernelPackages = pkgs.linuxPackages_7_1;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -270,7 +271,7 @@ networking.wireless.iwd.enable = true;
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
+  # Before changing this value read the documentation for config.boot.kernelPackages.nvidiaPackages.beta;this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "26.05"; # Did you read the comment?
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -285,7 +286,10 @@ networking.wireless.iwd.enable = true;
 
   boot.blacklistedKernelModules = [ "nouveau" ];
 
-  hardware.nvidia.open = true;
+  hardware.nvidia.open = false;
+
+  # Nvidia-Beta (Closed Source)
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
  hardware.nvidia.prime = {
   offload = {
