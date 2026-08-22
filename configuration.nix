@@ -142,6 +142,7 @@ config = {
       openssh
       vesktop
       mpv
+      bottles
 
       #hyprland
       kitty
