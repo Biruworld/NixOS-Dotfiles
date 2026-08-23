@@ -142,7 +142,7 @@ config = {
       openssh
       vesktop
       mpv
-      bottles
+      spotify
 
       #hyprland
       kitty
