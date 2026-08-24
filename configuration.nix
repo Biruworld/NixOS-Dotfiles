@@ -143,6 +143,7 @@ config = {
       vesktop
       mpv
       spotify
+      codeblocks
 
       #hyprland
       kitty
