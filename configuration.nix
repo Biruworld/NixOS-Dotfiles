@@ -144,12 +144,13 @@ config = {
       mpv
       spotify
       codeblocks
+      nautilus
 
       #hyprland
       kitty
       #waybar
       rofi
-      grim
+      #grim
       #brightnessctl
       slurp
       wl-clipboard
@@ -190,7 +191,7 @@ config = {
    pkgs.obsidian
    pkgs.bluetuith
    pkgs.pavucontrol
-   pkgs.hyprpaper
+   #pkgs.hyprpaper
    #pkgs.swaynotificationcenter
    pkgs.vscode
    pkgs.playerctl
@@ -203,13 +204,14 @@ config = {
    pkgs.obs-studio
    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
    pkgs.pulseaudio
+   pkgs.chromium
   ];
 	
-	systemd.user.services.polkit-kde-authentication-agent-1 = {
-  description = "KDE PolicyKit Authentication Agent";
-  wantedBy = [ "graphical-session.target" ];
-  wants = [ "graphical-session.target" ];
-  after = [ "graphical-session.target" ];
+  systemd.user.services.polkit-kde-authentication-agent-1 = {
+    description = "KDE PolicyKit Authentication Agent";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
 
   serviceConfig = {
     Type = "simple";
