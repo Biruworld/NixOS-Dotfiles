@@ -76,7 +76,7 @@ config = {
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  #networking.networkmanager.enable = true;
+  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Makassar";
@@ -147,13 +147,14 @@ config = {
 
       #hyprland
       kitty
-      waybar
+      #waybar
       rofi
       grim
-      brightnessctl
+      #brightnessctl
       slurp
       wl-clipboard
-      impala
+      #impala
+      power-profiles-daemon
     ];
   };
 
@@ -161,7 +162,7 @@ config = {
   programs.hyprland.enable = true;
 
 # iwd for Impala WIFI TUI
-networking.wireless.iwd.enable = true;
+#networking.wireless.iwd.enable = true;
 
 # fish shell
   programs.fish.enable = true;
@@ -190,7 +191,7 @@ networking.wireless.iwd.enable = true;
    pkgs.bluetuith
    pkgs.pavucontrol
    pkgs.hyprpaper
-   pkgs.swaynotificationcenter
+   #pkgs.swaynotificationcenter
    pkgs.vscode
    pkgs.playerctl
    kdePackages.polkit-kde-agent-1
@@ -198,7 +199,10 @@ networking.wireless.iwd.enable = true;
    pkgs.lm_sensors
    pkgs.gum
    pkgs.floorp-bin
-   pkgs.wiremix
+   #pkgs.wiremix
+   pkgs.obs-studio
+   inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+   pkgs.pulseaudio
   ];
 	
 	systemd.user.services.polkit-kde-authentication-agent-1 = {
