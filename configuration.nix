@@ -145,6 +145,7 @@ config = {
       spotify
       codeblocks
       nautilus
+      python3
 
       #hyprland
       kitty
@@ -164,6 +165,12 @@ config = {
 
 # iwd for Impala WIFI TUI
 #networking.wireless.iwd.enable = true;
+
+# Minecraft Java  
+ programs.java = {
+    enable = true;
+    package = pkgs.jdk; # Or specify a version like pkgs.jdk21, pkgs.openjdkunstable, etc.
+  };
 
 # fish shell
   programs.fish.enable = true;
