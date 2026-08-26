@@ -150,7 +150,7 @@ config = {
       kitty
       #waybar
       rofi
-      #grim
+      grim
       #brightnessctl
       slurp
       wl-clipboard
@@ -199,7 +199,6 @@ config = {
    pkgs.anki-bin
    pkgs.lm_sensors
    pkgs.gum
-   pkgs.floorp-bin
    #pkgs.wiremix
    pkgs.obs-studio
    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -235,6 +234,15 @@ config = {
     ];
   };
 
+  # XDG applications
+  xdg.portal = {
+  enable = true;
+  extraPortals = [ 
+    pkgs.xdg-desktop-portal-hyprland
+    pkgs.xdg-desktop-portal-gtk
+  ];
+  config.common.default = [ "hyprland" "gtk" ];
+};
   # No password for this certain applications.
   security.sudo.extraRules = [
   {
