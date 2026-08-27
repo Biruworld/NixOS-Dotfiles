@@ -208,9 +208,23 @@ config = {
    pkgs.gum
    #pkgs.wiremix
    pkgs.obs-studio
-   inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+   inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default # Noctalia
    pkgs.pulseaudio
    pkgs.chromium
+   pkgs.libnotify
+   inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default #zen
+     
+
+    # NVIDIA minecraft?
+    (pkgs.writeShellScriptBin "nvidia-offload-max" ''
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    export OGL_DEDICATED_HW_STATE_PER_CONTEXT=ENABLE_ROBUST_ACCESS
+    export SDL_VIDEODRIVER=x11
+    exec "$@"
+  '')  
   ];
 	
   systemd.user.services.polkit-kde-authentication-agent-1 = {
