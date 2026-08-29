@@ -15,6 +15,22 @@
   # release notes.
   home.stateVersion = "26.05"; # Please read the comment before changing.
 
+  wayland.windowManager.hyprland = {
+  enable = true;
+  
+  # Pass your desired plugins here
+  plugins = [
+    # Example using standard nixpkgs plugins
+    pkgs.hyprlandPlugins.gloview
+    pkgs.hyprlandPlugins.hyprexpo
+  ];
+  
+  settings = {
+    # Your regular hyprland settings go here
+    source = ./hypr;
+    recursive = true; # This keeps all your separated files and subfolders intact
+  };
+};
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
