@@ -213,6 +213,7 @@ config = {
    pkgs.chromium
    pkgs.libnotify
    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default #zen
+   pkgs.libreoffice
      
 
     # NVIDIA minecraft?
@@ -226,6 +227,13 @@ config = {
     exec "$@"
   '')  
   ];
+
+  # Zram configuration
+  zramSwap = {
+  enable = true;
+  algorithm = "zstd";
+  memoryPercent = 200; # 200% dari 12GB = 24GB ukuran virtual swap (uncompressed)
+};
 	
   systemd.user.services.polkit-kde-authentication-agent-1 = {
     description = "KDE PolicyKit Authentication Agent";
