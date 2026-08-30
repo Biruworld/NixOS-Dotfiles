@@ -146,6 +146,9 @@ config = {
       codeblocks
       nautilus
       python3
+      cpio
+      cmake
+      docker
 
       #hyprland
       kitty
@@ -214,6 +217,7 @@ config = {
    pkgs.libnotify
    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default #zen
    pkgs.libreoffice
+   #pkgs.winboat
      
 
     # NVIDIA minecraft?
@@ -234,7 +238,9 @@ config = {
   algorithm = "zstd";
   memoryPercent = 200; # 200% dari 12GB = 24GB ukuran virtual swap (uncompressed)
 };
-	
+  # Docker
+  virtualisation.docker.enable = true;
+
   systemd.user.services.polkit-kde-authentication-agent-1 = {
     description = "KDE PolicyKit Authentication Agent";
     wantedBy = [ "graphical-session.target" ];

@@ -21,15 +21,20 @@
   # Pass your desired plugins here
   plugins = [
     # Example using standard nixpkgs plugins
-    pkgs.hyprlandPlugins.gloview
-    pkgs.hyprlandPlugins.hyprexpo
+    #pkgs.hyprlandPlugins.gloview
+    #pkgs.hyprlandPlugins.hyprexpo
   ];
   
   settings = {
     # Your regular hyprland settings go here
-    source = ./hypr;
-    recursive = true; # This keeps all your separated files and subfolders intact
   };
+};
+
+xdg.configFile = {
+  "hypr/hyprland.lua".source = ./hypr/hyprland.lua;
+  "hypr/hypr_windowrule.lua".source = ./hypr/hypr_windowrule.lua;
+  "hypr/monitor.lua".source = ./hypr/monitor.lua;
+  "hypr/powermonitor.lua".source = ./hypr/powermonitor.lua;
 };
   # The home.packages option allows you to install Nix packages into your
   # environment.
