@@ -126,7 +126,7 @@ config = {
   users.users."asterlusnce" = {
     isNormalUser = true;
     description = "asterlusnce";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       kdePackages.kate
     #  thunderbird
@@ -149,6 +149,8 @@ config = {
       cpio
       cmake
       docker
+      appimage-run
+      freerdp
 
       #hyprland
       kitty
