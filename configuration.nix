@@ -165,6 +165,10 @@ config = {
     ];
   };
 
+nixpkgs.config.permittedInsecurePackages = [
+  "electron-40.10.5"
+];
+
 # Hyprland Utilities LMAOO XDDD
   programs.hyprland.enable = true;
 
@@ -219,7 +223,7 @@ config = {
    pkgs.libnotify
    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default #zen
    pkgs.libreoffice
-   #pkgs.winboat
+   pkgs.winboat
      
 
     # NVIDIA minecraft?
@@ -339,10 +343,10 @@ config = {
 
   boot.blacklistedKernelModules = [ "nouveau" ];
 
-  hardware.nvidia.open = false;
+  hardware.nvidia.open = true;
 
   # Nvidia-Beta (Closed Source)
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
  hardware.nvidia.prime = {
   offload = {

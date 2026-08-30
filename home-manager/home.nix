@@ -16,7 +16,7 @@
   home.stateVersion = "26.05"; # Please read the comment before changing.
 
   wayland.windowManager.hyprland = {
-  enable = true;
+  enable = false;
   
   # Pass your desired plugins here
   plugins = [
@@ -73,7 +73,7 @@ xdg.configFile = {
     # '';
   };
   services.hyprpaper = {
-  enable = true;
+  enable = false;
   settings = {
     preload = [
       "~/wallpapers/wallpaper2.jpg"
