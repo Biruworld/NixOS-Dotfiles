@@ -95,7 +95,7 @@ xdg.configFile = {
 };
 
   # Hypridle
-  services.hypridle.enable = true;
+  services.hypridle.enable = false;
 
   xdg.configFile."hypr/hypridle.conf".text = ''
   general {
