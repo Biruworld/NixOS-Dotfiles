@@ -74,6 +74,12 @@ config = {
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  
+  # Steam 
+  programs.steam = {
+  enable = true;
+  };
+
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -242,7 +248,7 @@ nixpkgs.config.permittedInsecurePackages = [
   zramSwap = {
   enable = true;
   algorithm = "zstd";
-  memoryPercent = 200; # 200% dari 12GB = 24GB ukuran virtual swap (uncompressed)
+  memoryPercent = 100; # 200% dari 12GB = 24GB ukuran virtual swap (uncompressed)
 };
   # Docker
   virtualisation.docker.enable = true;
@@ -278,12 +284,20 @@ nixpkgs.config.permittedInsecurePackages = [
   # XDG applications
   xdg.portal = {
   enable = true;
-  extraPortals = [ 
+
+  extraPortals = [
     pkgs.xdg-desktop-portal-hyprland
     pkgs.xdg-desktop-portal-gtk
   ];
-  config.common.default = [ "hyprland" "gtk" ];
+
+  config = {
+    common.default = [ "gtk" ];
+
+    KDE.default = [ "kde" "gtk" ];
+    Hyprland.default = [ "hyprland" "gtk" ];
+  };
 };
+
   # No password for this certain applications.
   security.sudo.extraRules = [
   {
