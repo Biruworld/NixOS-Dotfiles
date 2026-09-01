@@ -198,7 +198,7 @@ nixpkgs.config.permittedInsecurePackages = [
 
   # Bluetooth
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
+  #services.blueman.enable = true;
 
   # Flatpak
   services.flatpak.enable = true;
