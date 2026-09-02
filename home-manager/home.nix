@@ -17,6 +17,8 @@
 
   wayland.windowManager.hyprland = {
   enable = false;
+
+  #xdg.configFile."niri/config.kdl".source = ./config.kdl;
   
   # Pass your desired plugins here
   plugins = [

@@ -5,6 +5,11 @@
 { config, pkgs, inputs, lib, vars, ... }:
   # this is for sddm themes
   let
+  unstable = import inputs.nixpkgs-unstable {
+      system = pkgs.system;
+      config.allowUnfree = true;
+    };
+
   sddm-astronaut = pkgs.sddm-astronaut.override {
     embeddedTheme = "pixel_sakura";  # or any other theme
 
@@ -65,7 +70,7 @@ config = {
   boot.loader.efi.canTouchEfiVariables = true;
 
   #Use Stable or Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_7_1;
+  boot.kernelPackages = unstable.linuxPackages_7_2;
   #boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -163,7 +168,7 @@ config = {
       #waybar
       rofi
       grim
-      #brightnessctl
+      brightnessctl
       slurp
       wl-clipboard
       #impala
@@ -311,6 +316,9 @@ nixpkgs.config.permittedInsecurePackages = [
   }
 ];
 
+  # Niri
+  programs.niri.enable = true;
+
   # NixOS home.nix
   home-manager = {
   useGlobalPkgs = true;
@@ -357,10 +365,10 @@ nixpkgs.config.permittedInsecurePackages = [
 
   boot.blacklistedKernelModules = [ "nouveau" ];
 
-  hardware.nvidia.open = true;
+  hardware.nvidia.open = false;
 
   # Nvidia-Beta (Closed Source)
-  #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
 
  hardware.nvidia.prime = {
   offload = {
