@@ -16,7 +16,7 @@
   home.stateVersion = "26.05"; # Please read the comment before changing.
 
   wayland.windowManager.hyprland = {
-  enable = true; 
+  enable = false; 
 
   #xdg.configFile."niri/config.kdl".source = ./config.kdl;
   

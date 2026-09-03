@@ -53,7 +53,7 @@ config = {
         };
     };
       
-
+  programs.hyprland.enable = true; # enable Hyprland
 
   # sddm-astronaut-theme
   services.displayManager.sddm = {
@@ -162,6 +162,7 @@ config = {
       docker
       appimage-run
       freerdp
+      davinci-resolve
 
       #hyprland
       kitty

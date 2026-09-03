@@ -391,27 +391,22 @@ hl.window_rule({
 	no_focus = true,
 })
 
--- Layer rules also return a handle.
--- local overlayLayerRule = hl.layer_rule({
---     name  = "no-anim-overlay",
---     match = { namespace = "^my-overlay$" },
---     no_anim = true,
--- })
--- overlayLayerRule:set_enabled(false)
-
--- My hyprland windowrule config
 require("hypr_windowrule")
--- HyprMod managed settings
---require("hyprland-gui")
+-- For Lua-based configuration in Hyprland 0.55+
+hl.config({
 
--- Keybinds for gloview
---hl.bind("SUPER + TAB", hl.plugin.gloview.toggle)
---hl.bind("SUPER + SHIFT + TAB", hl.plugin.gloview.desktop)
---hl.bind("SUPER + CTRL + TAB", hl.plugin.gloview.allworkspaces)
+  general = {
+    -- Enable scrolling as the default layout
+    layout = "scrolling" 
+  },
+  scrolling = {
+    direction = "right",             -- Direction the tape grows (right, left, down, up)
+    column_width = 0.75,            -- Default width of new windows (e.g., 75% of the screen)
+    wrap_focus = true,              -- Wrap focus to the other side when reaching the end
+    fullscreen_on_one_column = true -- Scale a column to 100% width when a window is fullscreened
+  }
+})
 
---hl.bind("SUPER + bracketright", hl.plugin.gloview.next)
---hl.bind("SUPER + bracketleft", hl.plugin.gloview.prev)
---hl.bind("SUPER + 2", function()
---	hl.plugin.gloview.setworkspace(2)
---end)
-
+-- Move windows/columns horizontally on the tape
+hl.bind("SUPER+minus", hl.dsp.layout("colresize -0.2"))
+hl.bind("SUPER+equal", hl.dsp.layout("colresize +0.2"))
