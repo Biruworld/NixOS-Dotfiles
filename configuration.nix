@@ -18,14 +18,15 @@
     };
 };
 
-# TLP, Power Configure
-cfg = config.custom;
-in
-{
+  # TLP, Power Configure
+  cfg = config.custom;
+  in
+  {
+
   imports = [
 # include the results of the hardware scan.
   ./hardware-configuration.nix
-  ];
+  ]; 
 
 config = {
   #TLP Config
