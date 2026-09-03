@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -16,7 +16,7 @@
   home.stateVersion = "26.05"; # Please read the comment before changing.
 
   wayland.windowManager.hyprland = {
-  enable = false;
+  enable = true; 
 
   #xdg.configFile."niri/config.kdl".source = ./config.kdl;
   
@@ -24,12 +24,12 @@
   plugins = [
     # Example using standard nixpkgs plugins
     #pkgs.hyprlandPlugins.gloview
-    #pkgs.hyprlandPlugins.hyprexpo
   ];
   
   settings = {
     # Your regular hyprland settings go here
-  };
+   
+   };
 };
 
 xdg.configFile = {

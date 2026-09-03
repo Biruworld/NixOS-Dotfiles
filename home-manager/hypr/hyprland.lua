@@ -54,10 +54,6 @@ local menu = "rofi -show"
 hl.on("hyprland.start", function()
 	hl.exec_cmd("hyprctl setcursor miku-cursor-linux 24")
 	hl.exec_cmd("fcitx5 -d")
-	--hl.exec_cmd("swaync")
-	--hl.exec_cmd("hyprpaper")
-  --hl.exec_cmd("waybar")
-	hl.exec_cmd("kitty -e hyprpm enable gloview hyprexpo")
   hl.exec_cmd("kitty -e systemctl --user start plasma-polkit-agent")
   hl.exec_cmd("kwallet6")
   hl.exec_cmd("kitty -e systemctl --user enable --now kwallet6")
@@ -419,21 +415,3 @@ require("hypr_windowrule")
 --	hl.plugin.gloview.setworkspace(2)
 --end)
 
---hl.config({
---	plugin = {
---		hyprexpo = {
---			columns = 3,
---			gaps_in = 5,
---			gaps_out = 0,
---			bg_col = "rgb(111111)",
---			workspace_method = "center current",
---			gesture_distance = 200,
---			cancel_key = "escape",
---			show_cursor = 1,
---		},
---	},
---})
-
---hl.bind("ALT + TAB", function()
---	hl.plugin.hyprexpo.expo("toggle")
---end)

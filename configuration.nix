@@ -180,9 +180,6 @@ nixpkgs.config.permittedInsecurePackages = [
   "electron-40.10.5"
 ];
 
-# Hyprland Utilities LMAOO XDDD
-  programs.hyprland.enable = true;
-
 # iwd for Impala WIFI TUI
 #networking.wireless.iwd.enable = true;
 
@@ -321,6 +318,10 @@ nixpkgs.config.permittedInsecurePackages = [
 
   # NixOS home.nix
   home-manager = {
+  extraSpecialArgs = {
+  inherit inputs;
+  };
+
   useGlobalPkgs = true;
   useUserPackages = true;
 
@@ -368,7 +369,7 @@ nixpkgs.config.permittedInsecurePackages = [
   hardware.nvidia.open = false;
 
   # Nvidia-Beta (Closed Source)
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
  hardware.nvidia.prime = {
   offload = {
