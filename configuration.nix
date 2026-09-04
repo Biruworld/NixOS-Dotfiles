@@ -164,6 +164,7 @@ config = {
       appimage-run
       freerdp
       davinci-resolve
+      eyedropper
 
       #hyprland
       kitty
@@ -234,6 +235,8 @@ nixpkgs.config.permittedInsecurePackages = [
    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default #zen
    pkgs.libreoffice
    pkgs.winboat
+
+
      
 
     # NVIDIA minecraft?
