@@ -164,7 +164,7 @@ config = {
       appimage-run
       freerdp
       davinci-resolve
-      eyedropper
+      yazi
 
       #hyprland
       kitty
@@ -194,9 +194,6 @@ nixpkgs.config.permittedInsecurePackages = [
 
 # fish shell
   programs.fish.enable = true;
-
-  # Install firefox.
-  programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -230,7 +227,6 @@ nixpkgs.config.permittedInsecurePackages = [
    pkgs.obs-studio
    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default # Noctalia
    pkgs.pulseaudio
-   pkgs.chromium
    pkgs.libnotify
    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default #zen
    pkgs.libreoffice
