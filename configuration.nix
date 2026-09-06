@@ -89,7 +89,6 @@ config = {
   enable = true;
   };
 
-
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -169,6 +168,7 @@ config = {
       davinci-resolve
       yazi
       inkscape
+      foot
 
       #hyprland
       kitty
@@ -235,9 +235,7 @@ nixpkgs.config.permittedInsecurePackages = [
    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default #zen
    pkgs.libreoffice
    pkgs.winboat
-
-
-     
+   pkgs.todoist-electron 
 
     # NVIDIA minecraft?
     (pkgs.writeShellScriptBin "nvidia-offload-max" ''
@@ -250,6 +248,8 @@ nixpkgs.config.permittedInsecurePackages = [
     exec "$@"
   '')  
   ];
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Zram configuration
   zramSwap = {
