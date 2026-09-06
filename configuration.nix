@@ -54,7 +54,10 @@ config = {
         };
     };
       
-  programs.hyprland.enable = true; # enable Hyprland
+   programs.hyprland = {
+    enable = true;
+    package = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland;
+  };
 
   # sddm-astronaut-theme
   services.displayManager.sddm = {
@@ -165,6 +168,7 @@ config = {
       freerdp
       davinci-resolve
       yazi
+      inkscape
 
       #hyprland
       kitty
@@ -289,7 +293,6 @@ nixpkgs.config.permittedInsecurePackages = [
   enable = true;
 
   extraPortals = [
-    pkgs.xdg-desktop-portal-hyprland
     pkgs.xdg-desktop-portal-gtk
   ];
 
