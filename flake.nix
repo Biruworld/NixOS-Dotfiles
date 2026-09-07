@@ -20,6 +20,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nirimod = {
+     url = "github:srinivasr/nirimod";
+     inputs.nixpkgs.follows = "nixpkgs";
+  };
+
     affinity-nix.url = "github:mrshmllow/affinity-nix";
   };
 

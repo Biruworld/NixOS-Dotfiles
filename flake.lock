@@ -145,6 +145,26 @@
         "type": "github"
       }
     },
+    "nirimod": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785690854,
+        "narHash": "sha256-taHvAqDjemBHzFYCXjAVD2xZbIdsQxcXXlPq6Ebbio4=",
+        "owner": "srinivasr",
+        "repo": "nirimod",
+        "rev": "7a449c8451bd171d3c1d4281afc61f9d9f3ed86d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srinivasr",
+        "repo": "nirimod",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1787631388,
@@ -313,6 +333,7 @@
       "inputs": {
         "affinity-nix": "affinity-nix",
         "home-manager": "home-manager",
+        "nirimod": "nirimod",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "noctalia": "noctalia",

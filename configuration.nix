@@ -168,7 +168,6 @@ config = {
       davinci-resolve
       yazi
       inkscape
-      foot
 
       #hyprland
       kitty
@@ -235,7 +234,8 @@ nixpkgs.config.permittedInsecurePackages = [
    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default #zen
    pkgs.libreoffice
    pkgs.winboat
-   pkgs.todoist-electron 
+   pkgs.todoist-electron
+   inputs.nirimod.packages.${pkgs.system}.default
 
     # NVIDIA minecraft?
     (pkgs.writeShellScriptBin "nvidia-offload-max" ''

@@ -32,16 +32,20 @@
    };
 };
 
+xdg.configFile."niri/config.kdl".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/niri/config.kdl";
+
 xdg.configFile = {
   "hypr/hyprland.lua".source = ./hypr/hyprland.lua;
   "hypr/hypr_windowrule.lua".source = ./hypr/hypr_windowrule.lua;
   "hypr/monitor.lua".source = ./hypr/monitor.lua;
   "hypr/powermonitor.lua".source = ./hypr/powermonitor.lua;
 };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
       pkgs.mpdris2-rs
+
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -138,3 +142,4 @@ xdg.configFile = {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
+
