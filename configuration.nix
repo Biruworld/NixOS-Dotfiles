@@ -168,6 +168,7 @@ config = {
       davinci-resolve
       yazi
       inkscape
+      ghostty
 
       #hyprland
       kitty
@@ -217,11 +218,11 @@ nixpkgs.config.permittedInsecurePackages = [
    pkgs.strawberry
    pkgs.obsidian
    pkgs.bluetuith
-   pkgs.pavucontrol
+   #pkgs.pavucontrol
    #pkgs.hyprpaper
    #pkgs.swaynotificationcenter
    pkgs.vscode
-   pkgs.playerctl
+   #pkgs.playerctl
    kdePackages.polkit-kde-agent-1
    pkgs.anki-bin
    pkgs.lm_sensors
