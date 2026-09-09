@@ -53,11 +53,6 @@ config = {
         STOP_CHARGE_THRESH_BAT0 = 81; 
         };
     };
-      
-   programs.hyprland = {
-    enable = true;
-    package = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland;
-  };
 
   # sddm-astronaut-theme
   services.displayManager.sddm = {
@@ -143,7 +138,6 @@ config = {
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
       fastfetch
       btop
       neovim
@@ -171,10 +165,6 @@ config = {
       ghostty
       xwayland
       xwayland-satellite
-
-      #hyprland
-      kitty
-      #waybar
       rofi
       grim
       brightnessctl
@@ -220,16 +210,11 @@ nixpkgs.config.permittedInsecurePackages = [
    pkgs.strawberry
    pkgs.obsidian
    pkgs.bluetuith
-   #pkgs.pavucontrol
-   #pkgs.hyprpaper
-   #pkgs.swaynotificationcenter
    pkgs.vscode
-   #pkgs.playerctl
    kdePackages.polkit-kde-agent-1
    pkgs.anki-bin
    pkgs.lm_sensors
    pkgs.gum
-   #pkgs.wiremix
    pkgs.obs-studio
    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default # Noctalia
    pkgs.pulseaudio
@@ -278,7 +263,6 @@ nixpkgs.config.permittedInsecurePackages = [
     RestartSec = 1;
   };
 };
-
   virtualisation.podman = {
   enable = true;
 };
@@ -309,7 +293,6 @@ nixpkgs.config.permittedInsecurePackages = [
     common.default = [ "gtk" ];
 
     KDE.default = [ "kde" "gtk" ];
-    Hyprland.default = [ "hyprland" "gtk" ];
   };
 };
 

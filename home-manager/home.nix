@@ -15,31 +15,7 @@
   # release notes.
   home.stateVersion = "26.05"; # Please read the comment before changing.
 
-  wayland.windowManager.hyprland = {
-  enable = false; 
-
-  #xdg.configFile."niri/config.kdl".source = ./config.kdl;
-  
-  # Pass your desired plugins here
-  plugins = [
-    # Example using standard nixpkgs plugins
-    #pkgs.hyprlandPlugins.gloview
-  ];
-  
-  settings = {
-    # Your regular hyprland settings go here
-   
-   };
-};
-
 xdg.configFile."niri/config.kdl".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/niri/config.kdl";
-
-xdg.configFile = {
-  "hypr/hyprland.lua".source = ./hypr/hyprland.lua;
-  "hypr/hypr_windowrule.lua".source = ./hypr/hypr_windowrule.lua;
-  "hypr/monitor.lua".source = ./hypr/monitor.lua;
-  "hypr/powermonitor.lua".source = ./hypr/powermonitor.lua;
-};
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -78,47 +54,7 @@ xdg.configFile = {
     #   org.gradle.daemon.idletimeout=3600000
     # '';
   };
-  services.hyprpaper = {
-  enable = false;
-  settings = {
-    preload = [
-      "~/wallpapers/wallpaper2.jpg"
-      "~/wallpapers/wallpaper.jpg"
-    ];
-    wallpaper = [
-      # By display
-      # {
-      #   monitor = "DP-2";
-      #   path = "~/wallpapers/wallpaper2.jpg";
-      # }
-      # By default/fallback
-      {
-        monitor = "";
-        path = "~/Wallpapers/Sakura desktop.jpg"; 
-      }
-    ];
-  };
-};
 
-  # Hypridle
-  services.hypridle.enable = false;
-
-  xdg.configFile."hypr/hypridle.conf".text = ''
-  general {
-    ignore_dbus_inhibit = false
-  }
-
-  listener {
-    timeout = 600
-    on-timeout = hyprctl dispatch 'hl.dsp.dpms({ action = "disable" })'
-    on-resume = hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })'
-  }
-
-  listener {
-    timeout = 1800
-    on-timeout = systemctl suspend
-  }
-'';
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
   # shell provided by Home Manager. If you don't want to manage your shell
