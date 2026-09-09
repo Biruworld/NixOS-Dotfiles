@@ -172,6 +172,7 @@ config = {
       wl-clipboard
       playerctl
       power-profiles-daemon
+      zotero
     ];
   };
 
