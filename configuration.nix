@@ -169,6 +169,8 @@ config = {
       yazi
       inkscape
       ghostty
+      xwayland
+      xwayland-satellite
 
       #hyprland
       kitty
@@ -237,6 +239,8 @@ nixpkgs.config.permittedInsecurePackages = [
    pkgs.winboat
    pkgs.todoist-electron
    inputs.nirimod.packages.${pkgs.system}.default
+   pkgs.distrobox
+   pkgs.cisco-packet-tracer_9
 
     # NVIDIA minecraft?
     (pkgs.writeShellScriptBin "nvidia-offload-max" ''
@@ -273,6 +277,10 @@ nixpkgs.config.permittedInsecurePackages = [
     Restart = "on-failure";
     RestartSec = 1;
   };
+};
+
+  virtualisation.podman = {
+  enable = true;
 };
 	
   fonts.packages = with pkgs; [
