@@ -170,7 +170,7 @@ config = {
       brightnessctl
       slurp
       wl-clipboard
-      #impala
+      playerctl
       power-profiles-daemon
     ];
   };
