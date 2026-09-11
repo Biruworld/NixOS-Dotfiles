@@ -324,6 +324,10 @@ nixpkgs.config.permittedInsecurePackages = [
   users.asterlusnce = import ./home-manager/home.nix;
 };
 
+# Virtual Box 
+   virtualisation.virtualbox.host.enable = true;
+   users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
