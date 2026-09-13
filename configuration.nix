@@ -107,6 +107,10 @@ config = {
     variant = "";
   };
 
+  services.openssh = {
+  enable = true;
+};
+
   # polkit
   security.polkit.enable = true;
   # Enable CUPS to print documents.
@@ -147,7 +151,6 @@ config = {
       pciutils
       usbutils
       nvme-cli
-      openssh
       vesktop
       mpv
       spotify
