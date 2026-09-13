@@ -239,6 +239,12 @@ nixpkgs.config.permittedInsecurePackages = [
   '')  
   ];
 
+  # Please this is just automatically finds my second SSD, so don't copy all.
+  fileSystems."/home/asterlusnce/Haibara Ai" = {
+  device = "/dev/disk/by-uuid/39b58863-aede-4a5b-a992-6fba72e2f080";
+  fsType = "btrfs";
+};
+
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Zram configuration
