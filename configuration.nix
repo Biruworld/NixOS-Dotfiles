@@ -73,6 +73,8 @@ config = {
 
   programs.spicetify = {
   enable = true;
+  theme = spicePkgs.themes.catppuccin;
+  colorScheme = "mocha";
  };
 
 
@@ -166,7 +168,6 @@ config = {
       nvme-cli
       vesktop
       mpv
-      spotify
       codeblocks
       nautilus
       python3
