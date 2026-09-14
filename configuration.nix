@@ -3,10 +3,10 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, inputs, lib, vars, ... }:
-  # this is for sddm themes
-  let
+  # this is for sddm themes 
+  let 
   unstable = import inputs.nixpkgs-unstable {
-      system = pkgs.system;
+      system = pkgs.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
 
@@ -18,6 +18,8 @@
     };
 };
 
+     spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+
   # TLP, Power Configure
   cfg = config.custom;
   in
@@ -26,6 +28,7 @@
   imports = [
 # include the results of the hardware scan.
   ./hardware-configuration.nix
+  inputs.spicetify-nix.nixosModules.default
   ]; 
 
 config = {
@@ -53,7 +56,7 @@ config = {
         STOP_CHARGE_THRESH_BAT0 = 81; 
         };
     };
-
+ 
   # sddm-astronaut-theme
   services.displayManager.sddm = {
     enable = true;
@@ -67,6 +70,11 @@ config = {
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  programs.spicetify = {
+  enable = true;
+ };
+
 
   #Use Stable or Use latest kernel.
   boot.kernelPackages = unstable.linuxPackages_7_2;
@@ -109,7 +117,12 @@ config = {
 
   services.openssh = {
   enable = true;
-};
+  };
+
+  services.ollama = {
+  enable = true;
+  };
+
 
   # polkit
   security.polkit.enable = true;
@@ -226,7 +239,7 @@ nixpkgs.config.permittedInsecurePackages = [
    pkgs.libreoffice
    pkgs.winboat
    pkgs.todoist-electron
-   inputs.nirimod.packages.${pkgs.system}.default
+   inputs.nirimod.packages.${pkgs.stdenv.hostPlatform.system}.default
    pkgs.distrobox
    pkgs.cisco-packet-tracer_9
 
