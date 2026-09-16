@@ -18,7 +18,7 @@
     };
 };
 
-     spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 
   # TLP, Power Configure
   cfg = config.custom;
@@ -45,9 +45,9 @@ config = {
         CPU_HWP_DYN_BOOST_ON_AC = 1;
         CPU_HWP_DYN_BOOST_ON_BAT = 0;
         CPU_SCALING_GOVERNOR_ON_AC = "balanced";
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+        CPU_SCALING_GOVERNOR_ON_BAT = "power-saver";
         CPU_ENERGY_PERF_POLICY_ON_AC = "balance_power";
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "powersave";
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "power-saver";
         PLATFORM_PROFILE_ON_AC = "balanced";
         PLATFORM_PROFILE_ON_BAT = "powersave";
         CPU_MAX_PERF_ON_BAT = 30;
@@ -80,7 +80,7 @@ config = {
 
   #Use Stable or Use latest kernel.
   boot.kernelPackages = unstable.linuxPackages_7_2;
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest; if you want the lastest.
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -116,15 +116,6 @@ config = {
     layout = "us";
     variant = "";
   };
-
-  services.openssh = {
-  enable = true;
-  };
-
-  services.ollama = {
-  enable = true;
-  };
-
 
   # polkit
   security.polkit.enable = true;
@@ -196,9 +187,6 @@ nixpkgs.config.permittedInsecurePackages = [
   "electron-40.10.5"
 ];
 
-# iwd for Impala WIFI TUI
-#networking.wireless.iwd.enable = true;
-
 # Minecraft Java  
  programs.java = {
     enable = true;
@@ -217,6 +205,20 @@ nixpkgs.config.permittedInsecurePackages = [
 
   # Flatpak
   services.flatpak.enable = true;
+
+  # OpenSSH
+  services.openssh = {
+  enable = true;
+  };
+
+  # Ollama
+  services.ollama = {
+  enable = true;
+  };
+
+  # Virtual Box 
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -244,7 +246,7 @@ nixpkgs.config.permittedInsecurePackages = [
    pkgs.distrobox
    pkgs.cisco-packet-tracer_9
 
-    # NVIDIA minecraft?
+    # Run Force Nvidia to Minecraft
     (pkgs.writeShellScriptBin "nvidia-offload-max" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
     export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
@@ -253,7 +255,7 @@ nixpkgs.config.permittedInsecurePackages = [
     export OGL_DEDICATED_HW_STATE_PER_CONTEXT=ENABLE_ROBUST_ACCESS
     export SDL_VIDEODRIVER=x11
     exec "$@"
-  '')  
+  '')
   ];
 
   # Please this is just automatically finds my second SSD, so don't copy all.
@@ -264,32 +266,21 @@ nixpkgs.config.permittedInsecurePackages = [
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # Zram configuration
+  # zram swap configuration
   zramSwap = {
   enable = true;
   algorithm = "zstd";
-  memoryPercent = 100; # 200% dari 12GB = 24GB ukuran virtual swap (uncompressed)
+  memoryPercent = 100;
 };
   # Docker
   virtualisation.docker.enable = true;
 
-  systemd.user.services.polkit-kde-authentication-agent-1 = {
-    description = "KDE PolicyKit Authentication Agent";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-
-  serviceConfig = {
-    Type = "simple";
-    ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
-    Restart = "on-failure";
-    RestartSec = 1;
-  };
-};
+  # Podman
   virtualisation.podman = {
   enable = true;
 };
-	
+  
+  # Fonts
   fonts.packages = with pkgs; [
   jetbrains-mono
   nerd-fonts.jetbrains-mono # If you need the Nerd Font icons
@@ -346,10 +337,6 @@ nixpkgs.config.permittedInsecurePackages = [
 
   users.asterlusnce = import ./home-manager/home.nix;
 };
-
-# Virtual Box 
-   virtualisation.virtualbox.host.enable = true;
-   users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
