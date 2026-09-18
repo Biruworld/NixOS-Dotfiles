@@ -109,7 +109,7 @@ config = {
 
   # Enable the KDE Plasma Desktop Environment.
   # services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  services.desktopManager.gnome.enable = true;
   
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -180,7 +180,8 @@ config = {
       wl-clipboard
       playerctl
       power-profiles-daemon
-      ccache  
+      ccache
+      qemu
     ];
   };
 
@@ -329,13 +330,14 @@ nixpkgs.config.permittedInsecurePackages = [
 
   # NixOS home.nix
   home-manager = {
+  backupFileExtension = "backup";
+
   extraSpecialArgs = {
   inherit inputs;
   };
 
   useGlobalPkgs = true;
   useUserPackages = true;
-
   users.asterlusnce = import ./home-manager/home.nix;
 };
 
