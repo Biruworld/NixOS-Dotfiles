@@ -182,6 +182,7 @@ config = {
       power-profiles-daemon
       ccache
       qemu
+      gnome-extension-manager
     ];
   };
 
