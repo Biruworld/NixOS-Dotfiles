@@ -159,6 +159,7 @@ config = {
       nvme-cli
       vesktop
       mpv
+      firefox 
       codeblocks
       nautilus
       python3
@@ -248,6 +249,7 @@ nixpkgs.config.permittedInsecurePackages = [
    inputs.nirimod.packages.${pkgs.stdenv.hostPlatform.system}.default
    pkgs.distrobox
    pkgs.cisco-packet-tracer_9
+   inputs.helium.packages.${pkgs.system}.default #Helium
 
     # Run Force Nvidia to Minecraft
     (pkgs.writeShellScriptBin "nvidia-offload-max" ''
