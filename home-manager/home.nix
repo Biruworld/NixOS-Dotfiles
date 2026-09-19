@@ -15,7 +15,7 @@
   # release notes.
   home.stateVersion = "26.05"; # Please read the comment before changing.
 
-xdg.configFile."niri/config.kdl".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/niri/config.kdl";
+#xdg.configFile."niri/config.kdl".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/niri/config.kdl";
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
