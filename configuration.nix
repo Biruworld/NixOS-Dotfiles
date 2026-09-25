@@ -176,6 +176,7 @@ config = {
       qemu
       gnome-extension-manager
       spotify
+      bibata-cursors
     ];
   };
 
@@ -183,8 +184,8 @@ nixpkgs.config.permittedInsecurePackages = [
   "electron-40.10.5"
 ];
 
-# Minecraft Java  
- programs.java = {
+  # Minecraft Java  
+   programs.java = {
     enable = true;
     package = pkgs.jdk; # Or specify a version like pkgs.jdk21, pkgs.openjdkunstable, etc.
   };
@@ -255,13 +256,22 @@ nixpkgs.config.permittedInsecurePackages = [
   '')
   ];
 
+# Gnome-keyring 
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
+
   # Please this is just automatically finds my second SSD, so don't copy all.
   fileSystems."/home/asterlusnce/Haibara Ai" = {
   device = "/dev/disk/by-uuid/39b58863-aede-4a5b-a992-6fba72e2f080";
   fsType = "btrfs";
 };
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables= {
+    NIXOS_OZONE_WL = "1";
+
+# Flags for Helium Browser's base 
+    HELIUM_FLAGS = "--password-store=gnome-libsecret --enable-features=UseOzonePlatform --ozone-platform=wayland";
+};
 
   # zram swap configuration
   zramSwap = {
@@ -269,6 +279,7 @@ nixpkgs.config.permittedInsecurePackages = [
   algorithm = "zstd";
   memoryPercent = 100;
 };
+
   # Docker
   virtualisation.docker.enable = true;
 
@@ -383,10 +394,10 @@ nixpkgs.config.permittedInsecurePackages = [
   offload = {
     enable = true;
     enableOffloadCmd = true;
-  };
+    };
     intelBusId = "PCI:0@0:2:0";
     nvidiaBusId = "PCI:1@0:0:0";
     # amdgpuBusId = "PCI:5@0:0:0"; # If you have an AMD iGPU
+    };
   };
-};
 }
