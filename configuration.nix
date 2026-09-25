@@ -18,8 +18,6 @@
     };
 };
 
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-
   # TLP, Power Configure
   cfg = config.custom;
   in
@@ -28,7 +26,6 @@
   imports = [
 # include the results of the hardware scan.
   ./hardware-configuration.nix
-  inputs.spicetify-nix.nixosModules.default
   ]; 
 
 config = {
@@ -70,13 +67,7 @@ config = {
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  programs.spicetify = {
-  enable = true;
-  theme = spicePkgs.themes.catppuccin;
-  colorScheme = "mocha";
- };
-
+ 
 
   #Use Stable or Use latest kernel.
   boot.kernelPackages = unstable.linuxPackages_7_2;
@@ -184,6 +175,7 @@ config = {
       ccache
       qemu
       gnome-extension-manager
+      spotify
     ];
   };
 
