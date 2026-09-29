@@ -46,7 +46,7 @@ config = {
         CPU_ENERGY_PERF_POLICY_ON_AC = "balance_power";
         CPU_ENERGY_PERF_POLICY_ON_BAT = "power-saver";
         PLATFORM_PROFILE_ON_AC = "balanced";
-        PLATFORM_PROFILE_ON_BAT = "powersave";
+        PLATFORM_PROFILE_ON_BAT = "power-saver";
         CPU_MAX_PERF_ON_BAT = 30;
         CPU_MAX_PERF_ON_AC = 100;
         START_CHARGE_THRESH_BAT0 = 75;
@@ -69,7 +69,7 @@ config = {
   boot.loader.efi.canTouchEfiVariables = true;
  
 
-  #Use Stable or Use latest kernel.
+  # Use Stable or Use latest kernel.
   boot.kernelPackages = unstable.linuxPackages_7_2;
   #boot.kernelPackages = pkgs.linuxPackages_latest; if you want the lastest.
 
@@ -181,7 +181,7 @@ config = {
 
 nixpkgs.config.permittedInsecurePackages = [
   "electron-40.10.5"
-];
+  ];
 
   # Minecraft Java  
    programs.java = {
@@ -253,7 +253,7 @@ nixpkgs.config.permittedInsecurePackages = [
   '')
   ];
 
-# Gnome-keyring 
+# GNOME-keyring 
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
 
@@ -261,21 +261,21 @@ nixpkgs.config.permittedInsecurePackages = [
   fileSystems."/home/asterlusnce/Haibara Ai" = {
   device = "/dev/disk/by-uuid/39b58863-aede-4a5b-a992-6fba72e2f080";
   fsType = "btrfs";
-};
+  };
 
   environment.sessionVariables= {
     NIXOS_OZONE_WL = "1";
 
 # Flags for Helium Browser's base 
     HELIUM_FLAGS = "--password-store=gnome-libsecret --enable-features=UseOzonePlatform --ozone-platform=wayland";
-};
+  };
 
   # zram swap configuration
   zramSwap = {
   enable = true;
   algorithm = "zstd";
   memoryPercent = 100;
-};
+  };
 
   # Docker
   virtualisation.docker.enable = true;
@@ -283,7 +283,7 @@ nixpkgs.config.permittedInsecurePackages = [
   # Podman
   virtualisation.podman = {
   enable = true;
-};
+  };
   
   # Fonts
   fonts.packages = with pkgs; [
@@ -314,21 +314,21 @@ nixpkgs.config.permittedInsecurePackages = [
     common.default = [ "gtk" ];
 
     KDE.default = [ "kde" "gtk" ];
+    };
   };
-};
 
   # No password for this certain applications.
   security.sudo.extraRules = [
   {
     users = [ "asterlusnce" ];
     commands = [
-      {
+        {
         command = "/home/asterlusnce/.local/bin/powerctl";
         options = [ "NOPASSWD" ];
-      }
-    ];
-  }
-];
+        }
+      ];
+    }
+  ];
 
   # Niri
   programs.niri.enable = true;
@@ -344,7 +344,7 @@ nixpkgs.config.permittedInsecurePackages = [
   useGlobalPkgs = true;
   useUserPackages = true;
   users.asterlusnce = import ./home-manager/home.nix;
-};
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
