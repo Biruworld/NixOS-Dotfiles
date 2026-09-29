@@ -13,11 +13,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nirimod = {
       url = "github:srinivasr/nirimod";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,9 +20,6 @@
 
     affinity-nix.url =
       "github:mrshmllow/affinity-nix";
-
-    spicetify-nix.url =
-      "github:Gerg-L/spicetify-nix";
 
     vm-curator.url =
       "github:mroboff/vm-curator";

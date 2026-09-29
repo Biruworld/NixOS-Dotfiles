@@ -149,8 +149,7 @@ config = {
       usbutils
       nvme-cli
       vesktop
-      mpv
-      firefox 
+      mpv 
       codeblocks
       nautilus
       python3
@@ -227,7 +226,6 @@ nixpkgs.config.permittedInsecurePackages = [
    pkgs.obsidian
    pkgs.bluetuith
    pkgs.vscode
-   kdePackages.polkit-kde-agent-1
    pkgs.anki-bin
    pkgs.lm_sensors
    pkgs.gum
@@ -235,7 +233,6 @@ nixpkgs.config.permittedInsecurePackages = [
    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default # Noctalia
    pkgs.pulseaudio
    pkgs.libnotify
-   inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default #zen
    pkgs.libreoffice
    pkgs.winboat
    pkgs.todoist-electron
@@ -292,6 +289,8 @@ nixpkgs.config.permittedInsecurePackages = [
   fonts.packages = with pkgs; [
   jetbrains-mono
   nerd-fonts.jetbrains-mono # If you need the Nerd Font icons
+  noto-fonts
+  noto-fonts-cjk-sans
   ];
 
   i18n.inputMethod = {
