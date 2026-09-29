@@ -176,6 +176,7 @@ config = {
       gnome-extension-manager
       spotify
       bibata-cursors
+      tlp-pd
     ];
   };
 
