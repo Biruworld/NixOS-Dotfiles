@@ -41,11 +41,11 @@ config = {
         CPU_BOOST_ON_BAT = 0;
         CPU_HWP_DYN_BOOST_ON_AC = 1;
         CPU_HWP_DYN_BOOST_ON_BAT = 0;
-        CPU_SCALING_GOVERNOR_ON_AC = "balanced";
+        CPU_SCALING_GOVERNOR_ON_AC = "balance_power";
         CPU_SCALING_GOVERNOR_ON_BAT = "power-saver";
         CPU_ENERGY_PERF_POLICY_ON_AC = "balance_power";
         CPU_ENERGY_PERF_POLICY_ON_BAT = "power-saver";
-        PLATFORM_PROFILE_ON_AC = "balanced";
+        PLATFORM_PROFILE_ON_AC = "balance_power";
         PLATFORM_PROFILE_ON_BAT = "power-saver";
         CPU_MAX_PERF_ON_BAT = 30;
         CPU_MAX_PERF_ON_AC = 100;
@@ -123,7 +123,11 @@ config = {
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
-
+    extraConfig.pipewire."99-allowed-rates" = {
+        "context.properties" = {
+             "default.clock.allowed-rates" = [ 44100 48000 88200 96000 176400 192000 352800 384000 ];
+          };
+      };
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
@@ -145,6 +149,7 @@ config = {
       wget
       git
       gcc
+      gdb
       pciutils
       usbutils
       nvme-cli
@@ -170,12 +175,9 @@ config = {
       slurp
       wl-clipboard
       playerctl
-      power-profiles-daemon
-      ccache
       qemu
       gnome-extension-manager
       spotify
-      bibata-cursors
       tlp-pd
     ];
   };
@@ -390,8 +392,11 @@ nixpkgs.config.permittedInsecurePackages = [
   # Nvidia-Beta (Closed Source)
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
- hardware.nvidia.prime = {
-  offload = {
+  powerManagement.enable = true;
+  #powerManagement.fineGrained = true;
+
+  hardware.nvidia.prime = {
+   offload = {
     enable = true;
     enableOffloadCmd = true;
     };
