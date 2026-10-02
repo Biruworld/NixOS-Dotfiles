@@ -178,7 +178,6 @@ config = {
       qemu
       gnome-extension-manager
       spotify
-      tlp-pd
     ];
   };
 
@@ -192,8 +191,11 @@ nixpkgs.config.permittedInsecurePackages = [
     package = pkgs.jdk; # Or specify a version like pkgs.jdk21, pkgs.openjdkunstable, etc.
   };
 
-# fish shell
+  # fish shell
   programs.fish.enable = true;
+
+  # TLP-PD
+  services.tlp.pd.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
