@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Ayaka
+Description=Animated Ayaka boot splash
+ModuleName=script
+
+[script]
+ImageDir=@out@/share/plymouth/themes/ayaka
+ScriptFile=@out@/share/plymouth/themes/ayaka/ayaka.script

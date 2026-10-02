@@ -68,7 +68,22 @@ config = {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
  
+  # Plymouth.
+  boot.plymouth = {
+  enable = true;
+  theme = "ayaka";
+  themePackages= [ (pkgs.callPackage ./plymouth/default.nix { }) ];
+  };
 
+  boot.consoleLogLevel = 3;
+  boot.initrd.verbose = false;
+
+  boot.kernelParams = [
+  "quiet"
+  "rd.udev.log_level=3"
+  "rd.systemd.show_status=auto"
+  ];
+  
   # Use Stable or Use latest kernel.
   boot.kernelPackages = unstable.linuxPackages_7_2;
   #boot.kernelPackages = pkgs.linuxPackages_latest; if you want the lastest.

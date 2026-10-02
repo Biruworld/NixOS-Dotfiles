@@ -1,0 +1,51 @@
+# Ayaka animated splash. @...@ values are filled in by default.nix at build time.
+
+frame_count     = @FRAME_COUNT@;
+ticks_per_frame = @TICKS_PER_FRAME@;   # Plymouth refreshes at 50 Hz, so 3 ticks = 60 ms
+
+Window.SetBackgroundTopColor(0, 0, 0);
+Window.SetBackgroundBottomColor(0, 0, 0);
+
+# Load every frame once, up front
+for (i = 0; i < frame_count; i++)
+  frames[i] = Image("frame-" + i + ".png");
+
+# Centre the animation (frames are already baked at screen size)
+sprite = Sprite();
+sprite.SetPosition(
+  Window.GetX() + (Window.GetWidth()  - frames[0].GetWidth())  / 2,
+  Window.GetY() + (Window.GetHeight() - frames[0].GetHeight()) / 2,
+  0);
+sprite.SetImage(frames[0]);
+
+global.tick = 0;
+
+fun refresh_callback() {
+  idx = Math.Int(global.tick / ticks_per_frame);
+  sprite.SetImage(frames[idx]);
+  global.tick = global.tick + 1;
+  if (global.tick >= frame_count * ticks_per_frame)
+    global.tick = 0;
+}
+Plymouth.SetRefreshFunction(refresh_callback);
+
+# --- Disk-encryption passphrase prompt (only used if you ever enable LUKS) ---
+password_sprite = Sprite();
+
+fun password_callback(prompt, bullets) {
+  stars = "";
+  for (i = 0; i < bullets; i++)
+    stars = stars + "*";
+  img = Image.Text(prompt + "  " + stars, 1, 1, 1);
+  password_sprite.SetImage(img);
+  password_sprite.SetPosition(
+    Window.GetX() + (Window.GetWidth() - img.GetWidth()) / 2,
+    Window.GetY() + Window.GetHeight() * 0.9,
+    10);
+  password_sprite.SetOpacity(1);
+}
+fun normal_callback() {
+  password_sprite.SetOpacity(0);
+}
+Plymouth.SetDisplayPasswordFunction(password_callback);
+Plymouth.SetDisplayNormalFunction(normal_callback);
