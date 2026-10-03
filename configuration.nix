@@ -76,7 +76,7 @@ config = {
   };
 
   boot.consoleLogLevel = 3;
-  boot.initrd.verbose = false;
+  boot.initrd.verbose = true;
 
   boot.kernelParams = [
   "quiet"
@@ -193,6 +193,8 @@ config = {
       qemu
       gnome-extension-manager
       spotify
+      wlr-randr
+      wdisplays
     ];
   };
 
