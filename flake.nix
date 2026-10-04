@@ -18,8 +18,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    affinity-nix.url =
-      "github:mrshmllow/affinity-nix";
+    #affinity-nix.url = "github:mrshmllow/affinity-nix";
 
     vm-curator.url =
       "github:mroboff/vm-curator";
@@ -54,7 +53,7 @@
             ...
           }: {
             nixpkgs.overlays = [
-              inputs.affinity-nix.overlays.default
+              #inputs.affinity-nix.overlays.default
 
               (final: prev: {
                 vm-curator =
@@ -65,7 +64,7 @@
             ];
 
             environment.systemPackages = with pkgs; [
-              affinity-v3
+              #affinity-v3
               vm-curator
             ];
           })
