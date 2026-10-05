@@ -100,6 +100,9 @@ config = {
   enable = true;
   };
 
+  # Hyprland
+  programs.hyprland.enable = true;
+
   # Enable networking
   networking.networkmanager.enable = true;
 
