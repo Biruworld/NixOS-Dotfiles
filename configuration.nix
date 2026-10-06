@@ -43,10 +43,10 @@ config = {
         CPU_HWP_DYN_BOOST_ON_BAT = 0;
         CPU_SCALING_GOVERNOR_ON_AC = "balance_power";
         CPU_SCALING_GOVERNOR_ON_BAT = "power-saver";
-        CPU_ENERGY_PERF_POLICY_ON_AC = "balance_power";
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "power-saver";
-        PLATFORM_PROFILE_ON_AC = "balance_power";
-        PLATFORM_PROFILE_ON_BAT = "power-saver";
+        CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+        PLATFORM_PROFILE_ON_AC = "performance";
+        PLATFORM_PROFILE_ON_BAT = "powersave";
         CPU_MAX_PERF_ON_BAT = 30;
         CPU_MAX_PERF_ON_AC = 100;
         START_CHARGE_THRESH_BAT0 = 75;
@@ -160,7 +160,6 @@ config = {
     description = "asterlusnce";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
-      kdePackages.kate
       fastfetch
       btop
       neovim
@@ -201,7 +200,7 @@ config = {
     ];
   };
 
-nixpkgs.config.permittedInsecurePackages = [
+  nixpkgs.config.permittedInsecurePackages = [
   "electron-40.10.5"
   ];
 
@@ -261,10 +260,10 @@ nixpkgs.config.permittedInsecurePackages = [
    pkgs.libreoffice
    pkgs.winboat
    pkgs.todoist-electron
-   inputs.nirimod.packages.${pkgs.stdenv.hostPlatform.system}.default
+   inputs.nirimod.packages.${pkgs.stdenv.hostPlatform.system}.default # NiriMod
    pkgs.distrobox
    pkgs.cisco-packet-tracer_9
-   inputs.helium.packages.${pkgs.system}.default #Helium
+   inputs.helium.packages.${pkgs.system}.default # Helium
 
     # Run Force Nvidia to Minecraft
     (pkgs.writeShellScriptBin "nvidia-offload-max" ''
